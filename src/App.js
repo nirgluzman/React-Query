@@ -10,7 +10,9 @@ function App() {
     isError,
   } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => axios.get('https://api.escuelajs.co/api/v1/products'),
+    queryFn: async () =>
+      await axios.get('https://api.escuelajs.co/api/v1/products'),
+    staleTime: 1000 * 60 * 10, // the length of time before the data becomes stale (i.e. max time to be considered fresh)
   });
 
   if (isLoading) {
